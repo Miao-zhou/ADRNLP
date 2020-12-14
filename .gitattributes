@@ -1,0 +1,8 @@
+“* filter=lfs diff=lfs merge=lfs -text
+.gif” filter=lfs diff=lfs merge=lfs -text
+“F:ADENLPbiobert” filter=lfs diff=lfs merge=lfs -text
+“biobert” filter=lfs diff=lfs merge=lfs -text
+ADENLP/biobert filter=lfs diff=lfs merge=lfs -text
+*.biobert filter=lfs diff=lfs merge=lfs -text
+biobert filter=lfs diff=lfs merge=lfs -text
+biobert.rar filter=lfs diff=lfs merge=lfs -text
