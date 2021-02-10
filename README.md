@@ -12,9 +12,11 @@ ADENLP is a general framework that can conveniently and practically extract drug
 [周淼]  (Zhou Miao)
 
 ## Download
+Our trained model and data can be downloaded from
 ```
- $ git clone https://github.com/Miao-zhou/ADENLP.git
+ https://pan.baidu.com/s/18WLx7DzuPJL-xKMuqaKB9g
 ```
+The extraction password is 6sc7
 
 ## Extracting DSPs
 Our extraction tool base on R packages—“pubMR”, which can install from https://github.com/xizhou/pubMR.git
