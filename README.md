@@ -230,14 +230,14 @@ $ rm -rf $OUTPUT_DIR
 $ python3 run_re.py --task_name=$TASK_NAME --do_train=false --do_eval=false --do_predict=true --vocab_file=$BIOBERT_DIR/vocab.txt --bert_config_file=$BIOBERT_DIR/bert_config.json --init_checkpoint=$CHECKPOINT --max_seq_length=64 --train_batch_size=32 --learning_rate=1e-5 --num_train_epochs=20.0 --do_lower_case=true --data_dir=$RE_DIR --output_dir=$OUTPUT_DIR
 $ python3 ./biocodes/re_eval.py --output_path=$OUTPUT_DIR/test_results.tsv --answer_path=$RE_DIR/test.tsv
 ```
+
 We can get the result like this:
-picture
-
-
+![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/metformin.png)
 
 
 The results of the comparison of adverse reactions with metformin in the SIDER database are as follows:
+![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/metformin-venn.png)
 
-
+![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/figure4.png)
 
 
