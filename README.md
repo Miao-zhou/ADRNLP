@@ -2,7 +2,7 @@
 
 ADENLP
 ==========
-ADENLP is a general framework that can conveniently and practically extract drug side effects from literature database,it can generate drug side pairs (DSPs) based on embedding text mining and transfer learning for discovering drug-side-effect association.Any potential  drug side pair in a certain research field can be automatically extracted from PubMed database by our developed tool; extracted DSPs can be used for the downstream steps: training the transfer learning models.
+ADENLP is a general framework that can conveniently and practically extract adverse drug reactions from literature database,it can generate  chemical-disease pairs (CDPs) based on embedding text mining and transfer learning for discovering drug-side-effect association.Any potential  drug side pair in a certain research field can be automatically extracted from PubMed database by our developed tool; extracted CDPs can be used for the downstream steps: training the transfer learning models.
 
 ## Authors
 
@@ -18,7 +18,7 @@ Our trained model and data can be downloaded from
 ```
 The extraction password is 6sc7
 
-## Extracting DSPs
+## Extracting 	CDPs
 Our extraction tool base on R packages—“pubMR”, which can install from https://github.com/xizhou/pubMR.git
 
 
@@ -40,7 +40,7 @@ An object of class "txtList" containing 2089 articles
 with slot names: PMID,TI,AB,JT,DP,ISSN,MH,SH,MAJR,AU.
 ```
 
-**Extracting pmid of paper that including drug side effects:** 
+**Extracting PMID numbers of paper that including drug side effects:** 
 
 ```r
 obj1=data.table(PMID=obj@PMID,MAJR=obj@MAJR)
@@ -126,7 +126,7 @@ Labeling the sentence and name "raw_v1":
 
 
 ## Training fine-tuning BioBERT model
-We label the drug side effect of asprin sentence set,and randomly divide it into "train","test" and "dev" data set files for training fine-tuning BioBERT model.
+We label the drug side effect of aspirin sentence set,and randomly divide it into "train","test" and "dev" data set files for training fine-tuning BioBERT model.
 
 ### Requriements
 use requirements.txt to install the model as follows:
@@ -135,8 +135,8 @@ $ git clone https://github.com/Miao-zhou/ADENLP.git
 $ pip3 install -r requirement.txt 
 ```
 ### Training
-### BioBERT+Asprin (Predicting asprin)
-We train the model by using asprin "train" dataset and predict the asprin "test" dataset:
+### BioBERT(Aspirin) (Predicting aspirin)
+We train the model by using aspirin "train" dataset and predict the aspirin "test" dataset:
 
 Let $RE_DIR indicate a folder for a single dataset  which contains  train.tsv, dev.tsv and test.tsv, $TASK_NAME denote the name of task (euadr), and $OUTPUT_DIR denote a directory for outputs:
 ```
@@ -166,7 +166,7 @@ Precision: 96.04%
 ```
 
 
-### BioBERT+Asprin (Predicting ADE)
+### BioBERT(Aspirin) (Predicting ADE)
  We use our model to predicting ADE sentence dataset.
 
 ```
@@ -216,6 +216,28 @@ We can get the result like this:
 **Visualing the result by Grakn**
 
 ![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/omalizumab%20grakn.png)
+
+### Metformin
+We take the all-purpose drug Metformin as an example,we extract sentence of Metformin from pubmed and predicting its adverse effect. Afterwards, our predicted results were compared to the SIDER database of Metformin adverse reactions.
+Predicting code is following:
+```
+$ export CHECKPOINT=./initial_asprinoutput/model.ckpt-6250
+$ export BIOBERT_DIR=./biobert_v1.1_pubmed
+$ export RE_DIR=./metformin
+$ export TASK_NAME=euadr
+$ export OUTPUT_DIR=./metforminoutput
+$ rm -rf $OUTPUT_DIR
+$ python3 run_re.py --task_name=$TASK_NAME --do_train=false --do_eval=false --do_predict=true --vocab_file=$BIOBERT_DIR/vocab.txt --bert_config_file=$BIOBERT_DIR/bert_config.json --init_checkpoint=$CHECKPOINT --max_seq_length=64 --train_batch_size=32 --learning_rate=1e-5 --num_train_epochs=20.0 --do_lower_case=true --data_dir=$RE_DIR --output_dir=$OUTPUT_DIR
+$ python3 ./biocodes/re_eval.py --output_path=$OUTPUT_DIR/test_results.tsv --answer_path=$RE_DIR/test.tsv
+```
+We can get the result like this:
+picture
+
+
+
+
+The results of the comparison of adverse reactions with metformin in the SIDER database are as follows:
+
 
 
 
