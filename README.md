@@ -17,8 +17,10 @@ Our trained model and data can be downloaded from
  https://pan.baidu.com/s/18WLx7DzuPJL-xKMuqaKB9g
 ```
 The extraction password is 6sc7
+
+
 ##  The working flow of ADRNLP
-![Image text] framework
+![Image text](https://raw.githubusercontent.com/Miao-zhou/ADRNLP/main/framework.png)
 
 
 
@@ -226,12 +228,14 @@ $y isa disease, has name "triphasic anaphylaxis";
 $xy($x,$y) isa induce;
 get;
 ```
-![Image text](figure_o)
+![Image text](https://raw.githubusercontent.com/Miao-zhou/ADRNLP/main/figure_o.png)
+
 
 The visualization of all adverse reactions of omalizumab is as follows:
 
 
 ![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/omalizumab%20grakn.png)
+
 
 ### Metformin
 We take the all-purpose drug Metformin as an example,we extract sentence of Metformin from pubmed and predicting its adverse reaction.
