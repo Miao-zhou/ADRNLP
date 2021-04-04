@@ -1,8 +1,8 @@
 
 
-ADENLP
+ADRNLP
 ==========
-ADENLP is a general framework that can conveniently and practically extract adverse drug reactions from literature database,it can generate  chemical-disease pairs (CDPs) based on embedding text mining and transfer learning for discovering drug-side-effect association.Any potential  drug side pair in a certain research field can be automatically extracted from PubMed database by our developed tool; extracted CDPs can be used for the downstream steps: training the transfer learning models.
+ADRNLP is a general framework that can conveniently and practically extract adverse drug reactions from literature database,it can generate  chemical-disease pairs (CDPs) based on embedding text mining and transfer learning for discovering drug-side-effect association.Any potential  drug side pair in a certain research field can be automatically extracted from PubMed database by our developed tool; extracted CDPs can be used for the downstream steps: training the transfer learning models.
 
 ## Authors
 
@@ -17,6 +17,10 @@ Our trained model and data can be downloaded from
  https://pan.baidu.com/s/18WLx7DzuPJL-xKMuqaKB9g
 ```
 The extraction password is 6sc7
+##  The working flow of ADRNLP
+![Image text] framework
+
+
 
 ## Extracting 	CDPs
 Our extraction tool base on R packages—“pubMR”, which can install from https://github.com/xizhou/pubMR.git
@@ -166,7 +170,7 @@ Precision: 96.04%
 ```
 
 
-### BioBERT(Aspirin) (Predicting ADE)
+### BioBERT(Aspirin) (Predicting ADE corpus)
  We use our model to predicting ADE sentence dataset.
 
 ```
@@ -194,9 +198,10 @@ Precision: 99.92%
 ```
 
 
-## Visualization
+## Application Examples
+
 ### Omalizumab
-We take the drug "Omalizumab" as an example,we extract sentence of omalizumab from pubmed and predicting its adverse effect.
+We take the drug "Omalizumab" as an example,we extract sentence of omalizumab from pubmed and predicting its adverse reaction.
 
 Predicting code is following:
 
@@ -214,11 +219,22 @@ We can get the result like this:
 ![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/omalizumab.png)
 
 **Visualing the result by Grakn**
+You can query for any adverse reaction what you want in Grakn workbase. The query code is as follows. 
+```
+match $x isa drug, has name "omalizumab";
+$y isa disease, has name "triphasic anaphylaxis";
+$xy($x,$y) isa induce;
+get;
+```
+![Image text](figure_o)
+
+The visualization of all adverse reactions of omalizumab is as follows:
+
 
 ![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/omalizumab%20grakn.png)
 
 ### Metformin
-We take the all-purpose drug Metformin as an example,we extract sentence of Metformin from pubmed and predicting its adverse effect. Afterwards, our predicted results were compared to the SIDER database of Metformin adverse reactions.
+We take the all-purpose drug Metformin as an example,we extract sentence of Metformin from pubmed and predicting its adverse reaction.
 Predicting code is following:
 ```
 $ export CHECKPOINT=./initial_asprinoutput/model.ckpt-6250
@@ -235,9 +251,5 @@ We can get the result like this:
 ![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/metformin.png)
 
 
-The results of the comparison of adverse reactions with metformin in the SIDER database are as follows:
-![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/metformin-venn.png)
-
-![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/figure4.png)
 
 
