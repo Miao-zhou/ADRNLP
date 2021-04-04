@@ -221,6 +221,7 @@ We can get the result like this:
 ![Image text](https://raw.githubusercontent.com/Miao-zhou/ADENLP/main/omalizumab.png)
 
 **Visualing the result by Grakn**
+
 You can query for any adverse reaction what you want in Grakn workbase. The query code is as follows. 
 ```
 match $x isa drug, has name "omalizumab";
