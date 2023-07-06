@@ -133,6 +133,7 @@ Labeling the sentence and name "raw_v1":
 
 ## Training fine-tuning BioBERT model
 We label the drug side effect of aspirin sentence set,and randomly divide it into "train","test" and "dev" data set files for training fine-tuning BioBERT model.
+Our model are fine tuned based on biobert, if you are interested in biobert you can also check out the biobert github site:  https://github.com/dmis-lab/biobert
 
 ### Requriements
 use requirements.txt to install the model as follows:
